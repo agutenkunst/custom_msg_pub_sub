@@ -16,6 +16,7 @@ class CustomPublisher(Node):
 
     def timer_callback(self):
         msg = CustomMsg()
+        msg.header.stamp = self.get_clock().now().to_msg()
         msg.my_field = float(self.i)
         self.publisher_.publish(msg)
         self.get_logger().info('Publishing: "%d"' % msg.my_field)
